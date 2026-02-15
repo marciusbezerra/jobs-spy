@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Job {
+  id          Int      @id @default(autoincrement())
+  title       String
+  company     String?
+  location    String?
+  url         String?
+  status      JobStatus @default(NEW)
+  description String?
+  source      String?
+  salaryMin   Float?
+  salaryMax   Float?
+  remote      Boolean?  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+
+enum JobStatus {
+  NEW
+  DISCARDED
+  APPLIED
+  REJECTED
+  INTERVIEWING
+  IN_CONTACT
+  SEE_LATER
+}
