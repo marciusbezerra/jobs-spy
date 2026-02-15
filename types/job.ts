@@ -1,3 +1,5 @@
+import { JobStatus } from "@prisma/client";
+
 export type Job = {
   id?: number;
   title: string;
@@ -6,20 +8,9 @@ export type Job = {
   url: string;
   description: string;
   source: string;
-  salaryMin?: number;
-  salaryMax?: number;
+  salary?: string;
   remote?: boolean;
   status?: JobStatus;
   createdAt?: Date;
   updatedAt?: Date;
 };
-
-export enum JobStatus {
-  NEW = "NEW",
-  DISCARDED = "DISCARDED",
-  APPLIED = "APPLIED",
-  REJECTED = "REJECTED",
-  INTERVIEWING = "INTERVIEWING",
-  IN_CONTACT = "IN_CONTACT",
-  SEE_LATER = "SEE_LATER",
-}

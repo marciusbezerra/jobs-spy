@@ -10,15 +10,15 @@ datasource db {
 
 model Job {
   id          Int      @id @default(autoincrement())
+  publishedAt DateTime?
   title       String
   company     String?
   location    String?
-  url         String?
+  url         String? @db.LongText
   status      JobStatus @default(NEW)
-  description String?
+  description String? @db.LongText
   source      String?
-  salaryMin   Float?
-  salaryMax   Float?
+  salary      String?
   remote      Boolean?  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
