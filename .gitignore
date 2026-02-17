@@ -35,6 +35,10 @@ yarn-error.log*
 .env
 .env.local
 .env.*.local
+# per-DB env example (central DBs can use their own env files)
+.env_mysql
+.env_postgres
+.env_mssql
 
 # vercel
 .vercel

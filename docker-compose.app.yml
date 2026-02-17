@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: jobs-spy-app:latest
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+    depends_on:
+      - db
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jobs-spy.rule=Host(`jobspy.mcbmax.com`)"
+      - "traefik.http.services.jobs-spy.loadbalancer.server.port=3000"
+      - "traefik.http.routers.jobs-spy.entrypoints=web" # Ugsing Cloudflare Thunnel, TLS is handled by C>
+      # - "traefik.http.routers.jobs-spy.tls=true" # Ugsing Cloudflare Thunnel, TLS is handled by Cloudf>
+      - "traefik.http.routers.jobs-spy.middlewares=jobs-spy-auth@file"
+    networks:
+      - traefik_default
+
+networks:
+  traefik_default:
+    external: true

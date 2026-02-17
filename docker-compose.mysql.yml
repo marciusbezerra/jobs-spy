@@ -13,6 +13,8 @@ services:
       - db_data:/var/lib/mysql
     ports:
       - "3306:3306"
+    networks:
+      - traefik_default
 
   phpmyadmin:
     env_file:
@@ -27,6 +29,8 @@ services:
       PMA_ABSOLUTE_URI: ${PMA_ABSOLUTE_URI}
     ports:
       - "8080:80"
+    networks:
+      - traefik_default
 
   adminer:
     image: adminer:latest
@@ -35,6 +39,12 @@ services:
       - db
     ports:
       - "8081:8080"
+    networks:
+      - traefik_default
 
 volumes:
   db_data:
+
+networks:
+  traefik_default:
+    external: true
