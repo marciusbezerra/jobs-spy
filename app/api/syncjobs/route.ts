@@ -148,7 +148,7 @@ export async function GET(request: NextRequest) {
       const apiId = process.env.ADZUNA_APP_ID;
       const apiKey = process.env.ADZUNA_APP_KEY;
       const upstream = await fetch(
-        `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=${apiId}&app_key=${apiKey}&results_per_page=20&what=${encodeURIComponent(filter)}`,
+        `https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=${apiId}&app_key=${apiKey}&results_per_page=20&where=brazil&what=${encodeURIComponent(filter)}`,
       );
       const data = await upstream.json();
 
@@ -193,7 +193,7 @@ export async function GET(request: NextRequest) {
       const filter = searchParams.get("filter") || "";
       const apiKey = process.env.JSEARCH_APP_KEY;
       const upstream = await fetch(
-        `https://jsearch.p.rapidapi.com/search?query=${encodeURIComponent(filter)}&page=1&num_pages=1&country=us&date_posted=all&work_from_home=true&language=pt`,
+        `https://jsearch.p.rapidapi.com/search?query=${encodeURIComponent(filter)}&page=1&num_pages=1&country=br&date_posted=all&work_from_home=true&language=pt`,
         // date_posted=all|today|3days|week|month
         // language=pt
         {
