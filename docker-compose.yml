@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   app:
     build:
@@ -11,7 +9,7 @@ services:
       NODE_ENV: production
       PORT: 3000
     depends_on:
-      - db
+      - mysql
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.jobs-spy.rule=Host(`jobspy.mcbmax.com`)"
@@ -21,7 +19,9 @@ services:
       - "traefik.http.routers.jobs-spy.middlewares=jobs-spy-auth@file"
     networks:
       - traefik_default
-
+      - db_network
 networks:
   traefik_default:
+    external: true
+  db_network:
     external: true

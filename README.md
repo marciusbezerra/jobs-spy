@@ -58,7 +58,7 @@ Notes:
 - The repository includes `docker-compose.db.yml` (MySQL + phpMyAdmin/adminer). The UI tools (phpMyAdmin and Adminer) are now routed through Traefik — update the placeholder hostnames below to match your DNS/hosts file:
   - phpMyAdmin: `phpmyadmin.example.com`
   - Adminer: `adminer.example.com`
-  (to change, edit the `Host(...)` rule in `docker-compose.db.yml` labels)
+    (to change, edit the `Host(...)` rule in `docker-compose.db.yml` labels)
 - `docker-compose.app.yml` contains an `app` service & example Traefik labels (for deployments that use a `traefik_default` network). Use `-f` to combine files when running with Docker Compose.
 
 Example full compose start (builds `app` and uses DB compose):
