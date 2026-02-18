@@ -9,8 +9,8 @@ services:
     environment:
       NODE_ENV: production
       PORT: 3000
-    depends_on:
-      - mysql
+    # depends_on:
+    #   - mysql
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.jobs-spy.rule=Host(`jobspy.mcbmax.com`)"
